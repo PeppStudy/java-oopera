@@ -3,13 +3,10 @@ public class MusicalShow extends Show {
     protected final MusicAuthor musicAuthor;
     protected String librettoText;
 
-    public MusicalShow(String title, Director director, int duration, MusicAuthor musicAuthor) {
+    public MusicalShow(String title, Director director, int duration, MusicAuthor musicAuthor, String librettoText) {
         super(title, director, duration);
         this.musicAuthor = musicAuthor;
-    }
-
-    public void setLibretto(String text) {
-        librettoText = text;
+        this.librettoText = librettoText;
     }
 
     public String getLibretto() {
@@ -22,6 +19,5 @@ public class MusicalShow extends Show {
         System.out.println(getLibretto());
         System.out.println("");
     }
-
 
 }

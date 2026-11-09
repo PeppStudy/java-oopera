@@ -4,8 +4,8 @@ public class Actor extends Person {
 
     private final int height;
 
-    public Actor(String name, String surname, Gendre gendre, int height) {
-        super(name, surname, gendre);
+    public Actor(String name, String surname, Gender gender, int height) {
+        super(name, surname, gender);
         this.height = height;
     }
 
@@ -14,16 +14,14 @@ public class Actor extends Person {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        if (!super.equals(o)) {
-            return false;
-        }
+
         Actor actor = (Actor) o;
-        return Objects.equals(height, actor.height);
+        return Objects.equals(name, actor.name) && Objects.equals(surname, actor.surname) && (height == actor.height);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), height);
+        return Objects.hash(name, surname, height);
     }
 
     @Override

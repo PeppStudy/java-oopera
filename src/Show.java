@@ -5,33 +5,32 @@ public class Show {
     protected final String title;
     protected final Director director;
     protected final int duration;
-    protected ArrayList<Actor> listOfActors = new ArrayList<>();
+    protected ArrayList<Actor> listOfActors;
 
     public Show(String title, Director director, int duration) {
         this.title = title;
         this.director = director;
         this.duration = duration;
+        listOfActors = new ArrayList<>();
     }
 
-    public boolean isExisting(ArrayList<Actor> listOfActors, Actor newActor) {
-        for (Actor actor : listOfActors) {
-            if (newActor.equals(actor)) {
+    private boolean isExisting(Actor newActor) {
+            if (listOfActors.contains(newActor)) {
                 System.out.printf("Артист %s уже задействован в спектакле%n", newActor.toStringAsPerson());
                 return true;
             }
-        }
         return false;
     }
 
-    public void addActor(ArrayList<Actor> listOfActors, Actor newActor) {
-        if (!isExisting(listOfActors, newActor)) {
+    public void addActor(Actor newActor) {
+        if (!isExisting(newActor)) {
             listOfActors.add(newActor);
             System.out.println(newActor.toString() + " добавлен");
         }
     }
 
-    public void replaceActor(ArrayList<Actor> listOfActors, Actor newActor, String existentActorSurname) {
-        if (!isExisting(listOfActors, newActor)) {
+    public void replaceActor(Actor newActor, String existentActorSurname) {
+        if (!isExisting(newActor)) {
             boolean isFound = false;
             for (int i = 0; i < listOfActors.size(); i++) {
                 if (listOfActors.get(i).getSurname().equals(existentActorSurname)) {
@@ -55,7 +54,7 @@ public class Show {
 
     // Список артистов явно указывается в параметрах, так как в спектакле
     // обычно заняты несколько составов исполнителей
-    public void printCastList(ArrayList<Actor> listOfActors) {
+    public void printCastList() {
         System.out.println("В спектакле \"" + title + "\" сегодня участвуют:");
         if (listOfActors.isEmpty()) {
             System.out.printf("*****************Спектакль отменен*****************%n" +

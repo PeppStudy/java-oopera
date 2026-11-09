@@ -1,17 +1,15 @@
-import java.util.ArrayList;
-
 public class Theatre {
 
     public static void main(String[] args) {
 
         // Создаем трех артистов
-        Actor sidorov1 = new Actor("Иван", "Сидоров", Gendre.MALE, 185);
-        Actor sidorov2 = new Actor("Василий", "Сидоров", Gendre.MALE, 190);
-        Actor tomilina = new Actor("Татьяна", "Томилина", Gendre.FEMALE, 178);
+        Actor sidorov1 = new Actor("Иван", "Сидоров", Gender.MALE, 185);
+        Actor sidorov2 = new Actor("Василий", "Сидоров", Gender.MALE, 190);
+        Actor tomilina = new Actor("Татьяна", "Томилина", Gender.FEMALE, 178);
 
         // Создаем двух режиссеров
-        Director playDirector = new Director("Юрий", "Любимов", Gendre.MALE);
-        Director operaDirector = new Director("Константин", "Станиславский", Gendre.MALE);
+        Director playDirector = new Director("Юрий", "Любимов", Gender.MALE, 50);
+        Director operaDirector = new Director("Константин", "Станиславский", Gender.MALE, 48);
 
         // Создаем композитора
         MusicAuthor composer = new MusicAuthor("Пётр", "Чайковский");
@@ -20,42 +18,40 @@ public class Theatre {
         Choreographer choreographer = new Choreographer("Мариус", "Петипа");
 
         Show play = new Show("Гамлет", playDirector, 150);
-        Opera opera = new Opera("Пиковая дама", operaDirector, 180, composer);
-        Ballet ballet = new Ballet("Лебединое озеро", operaDirector, 90, composer, choreographer);
+        Opera opera = new Opera("Пиковая дама", operaDirector, 180, composer,
+                "Это оперное либретто", 70);
+        Ballet ballet = new Ballet("Лебединое озеро", operaDirector, 90, composer, "Это балетное " +
+                "либретто", choreographer);
 
         // Добавляем артистов в драмспектакль и выводим список
-        ArrayList<Actor> playCast = new ArrayList<>();
-        play.addActor(playCast, sidorov1);
-        play.addActor(playCast, tomilina);
+        play.addActor(sidorov1);
+        play.addActor(tomilina);
 
-        play.printCastList(playCast);
+        play.printCastList();
 
         // Добавляем артистов в оперный спектакль и выводим список
-        ArrayList<Actor> operaCast = new ArrayList<>();
+        opera.addActor(sidorov1);
+        opera.addActor(sidorov2);
 
-        opera.addActor(operaCast, sidorov1);
-        opera.addActor(operaCast, sidorov2);
-
-        opera.printCastList(operaCast);
+        opera.printCastList();
 
         // Добавляем артистов в балетный спектакль и выводим список
-        ArrayList<Actor> balletCast = new ArrayList<>();
-        ballet.addActor(balletCast, sidorov1);
+        ballet.addActor(sidorov1);
 
-        ballet.printCastList(balletCast);
+        ballet.printCastList();
 
         // Заменяем артистов и выводим список нового состава
-        opera.replaceActor(playCast, sidorov2, "Томилина");
-        opera.printCastList(playCast);
+        opera.replaceActor(tomilina, "Сидоров");
+        opera.printCastList();
 
         // Заменяем несуществующего артиста и выводим список
-        opera.replaceActor(playCast, sidorov2, "Михайлов");
-        opera.printCastList(playCast);
+        ballet.replaceActor(tomilina, "Михайлов");
+        ballet.printCastList();
 
         // Печатаем либретто оперы
         opera.printLibrettoText();
 
-        // Печатаем либретто оперы
+        // Печатаем либретто балета
         ballet.printLibrettoText();
 
     }
