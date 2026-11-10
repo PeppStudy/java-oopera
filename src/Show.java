@@ -14,11 +14,12 @@ public class Show {
         listOfActors = new ArrayList<>();
     }
 
+    // Проверка, что такого актера еще нет в спектакле, и предупреждающее сообщение
     private boolean isExisting(Actor newActor) {
-            if (listOfActors.contains(newActor)) {
-                System.out.printf("Артист %s уже задействован в спектакле%n", newActor.toStringAsPerson());
-                return true;
-            }
+        if (listOfActors.contains(newActor)) {
+            System.out.printf("Артист %s уже задействован в спектакле%n", newActor.toStringAsPerson());
+            return true;
+        }
         return false;
     }
 
@@ -51,9 +52,6 @@ public class Show {
         }
     }
 
-
-    // Список артистов явно указывается в параметрах, так как в спектакле
-    // обычно заняты несколько составов исполнителей
     public void printCastList() {
         System.out.println("В спектакле \"" + title + "\" сегодня участвуют:");
         if (listOfActors.isEmpty()) {
